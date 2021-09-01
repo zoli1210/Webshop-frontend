@@ -1,0 +1,30 @@
+
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.login-inputs {
+  margin:20px;
+}
+.login-button {
+  margin-top :20px;
+  background-color: #135490;
+  color:#EBEBEB;
+}
+mat-card-header{
+  display:flex;
+  justify-content: center;
+}
+mat-form{
+  color:#EBEBEB;
+}
+::ng-deep .mat-ink-bar {
+  background-color: #135490 !important;
+  }
+::ng-deep mat-dialog-container {
+  padding:0px !important;
+}
+mat-card-header {
+  padding:20px;
+}

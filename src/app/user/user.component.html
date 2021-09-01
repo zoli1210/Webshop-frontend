@@ -1,0 +1,56 @@
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Login/Registration</mat-card-title>
+    <mat-card-subtitle>Please log in or register!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-form-field>
+        <mat-tab label="Login">
+          <div class="login-inputs">
+            <form [formGroup]="form" fxLayout="column">
+              <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" required />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" required />
+              </mat-form-field>
+              <button mat-raised-button class="login-button">Send</button>
+            </form>
+          </div>
+        </mat-tab>
+        <mat-tab label="Registration">
+          <div class="login-inputs">
+            <form [formGroup]="registrationForm" fxLayout="column">
+              <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" required />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" required />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Confirmation Password</mat-label>
+                <input matInput formControlName="repeatPassword" required />
+              </mat-form-field>
+              <button
+                (click)="isEqual()"
+                mat-raised-button
+                class="login-button"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </mat-tab>
+      </mat-form-field>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
