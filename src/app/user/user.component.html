@@ -8,7 +8,7 @@
       <mat-form-field>
         <mat-tab label="Login">
           <div class="login-inputs">
-            <form [formGroup]="form" fxLayout="column">
+            <form [formGroup]="form" fxLayout="column" id="datas">
               <mat-form-field>
                 <mat-label>Username</mat-label>
                 <input matInput formControlName="username" required />
@@ -17,13 +17,13 @@
                 <mat-label>Password</mat-label>
                 <input matInput formControlName="password" required />
               </mat-form-field>
-              <button mat-raised-button class="login-button">Send</button>
+              <button mat-raised-button class="login-button" [disabled]="form.invalid">Send</button>
             </form>
           </div>
         </mat-tab>
         <mat-tab label="Registration">
           <div class="login-inputs">
-            <form [formGroup]="registrationForm" fxLayout="column">
+            <form [formGroup]="registrationForm" fxLayout="column" (ngSubmit)="sendData()">
               <mat-form-field>
                 <mat-label>Username</mat-label>
                 <input matInput formControlName="username" required />
@@ -38,15 +38,9 @@
               </mat-form-field>
               <mat-form-field>
                 <mat-label>Confirmation Password</mat-label>
-                <input matInput formControlName="repeatPassword" required />
+                <input matInput formControlName="confirmPassword" required/>
               </mat-form-field>
-              <button
-                (click)="isEqual()"
-                mat-raised-button
-                class="login-button"
-              >
-                Send
-              </button>
+              <button mat-raised-button class="login-button" [disabled]="registrationForm.invalid">Send</button>
             </form>
           </div>
         </mat-tab>

@@ -1,23 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit{
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
-}
+
+  constructor() { }
+
+  ngOnInit(): void {}
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    autoplay:true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
+    }
+  }

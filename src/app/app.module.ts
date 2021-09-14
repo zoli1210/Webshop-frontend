@@ -8,6 +8,9 @@ import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms'
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,11 @@ import { MainPageComponent } from './main-page/main-page.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CarouselModule,
+    CommonModule
 
   ],
   providers: [],

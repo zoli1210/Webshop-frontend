@@ -1,9 +1,13 @@
-<mat-grid-list cols="4" rowHeight="400px">
-    <mat-grid-tile
-        *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.background]="tile.color">
-      {{tile.text}}
-    </mat-grid-tile>
-  </mat-grid-list>
+<div class="container text-center ">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide>
+      <img src="../../assets/img/img1.jpg">
+    </ng-template>  
+    <ng-template carouselSlide>
+      <img src="../../assets/img/img2.jpg">
+    </ng-template>  
+    <ng-template carouselSlide>
+      <img src="../../assets/img/img3.jpg">
+    </ng-template>  
+  </owl-carousel-o>
+</div>

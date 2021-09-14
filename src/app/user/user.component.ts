@@ -1,5 +1,8 @@
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-user',
@@ -14,25 +17,36 @@ form!: FormGroup;
 
 registrationForm!: FormGroup;
 
-pw!: string;
-repeatPw!: string;
+username!: string;
+email!: string;
+password!: string;
+result!: string;
 
-constructor (private fb:FormBuilder){}
+constructor (private fb:FormBuilder, private http:HttpClient){}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       username:'',
       password:['', Validators.required]
-    })
+    });
+
     this.registrationForm = this.fb.group({
       username:['',Validators.minLength(5),],
       email:['',Validators.email],
       password: ['', Validators.required],
-      repeatPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required]
     })
   }
-  isEqual() {
-    console.log(this.registrationForm.get("password")?.value ===   this.registrationForm.get("repeatPassword")?.value)
-    return this.registrationForm.get("password")?.value ===   this.registrationForm.get("repeatPassword")?.value ? true : false
+  sendData(): void{
+
+    let url = "http://localhost:8080/user"
+
+    this.http.post(url,{
+      username:this.registrationForm.get("username")?.value,
+      email:this.registrationForm.get("email")?.value,
+      password:this.registrationForm.get("password")?.value
+    }).toPromise().then((data:any) => {
+      this.result = JSON.stringify(data.json)
+    })
   }
 }
