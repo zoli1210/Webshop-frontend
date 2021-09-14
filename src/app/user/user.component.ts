@@ -1,8 +1,7 @@
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-user',
@@ -10,10 +9,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./user.component.scss']
 })
 
-
 export class UserComponent implements OnInit{
 
-form!: FormGroup;
+loginForm!: FormGroup;
 
 registrationForm!: FormGroup;
 
@@ -22,10 +20,10 @@ email!: string;
 password!: string;
 result!: string;
 
-constructor (private fb:FormBuilder, private http:HttpClient){}
+constructor (private fb:FormBuilder, private http:HttpClient,){}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
+    this.loginForm= this.fb.group({
       username:'',
       password:['', Validators.required]
     });
@@ -41,12 +39,21 @@ constructor (private fb:FormBuilder, private http:HttpClient){}
 
     let url = "http://localhost:8080/user"
 
+    const passwordHash = hashPass(this.registrationForm.get("password")?.value);
+
     this.http.post(url,{
       username:this.registrationForm.get("username")?.value,
       email:this.registrationForm.get("email")?.value,
-      password:this.registrationForm.get("password")?.value
+      password:passwordHash
+
     }).toPromise().then((data:any) => {
       this.result = JSON.stringify(data.json)
     })
   }
+}
+function hashPass(password:string):string{
+
+  const saltRounds = 10;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  return bcrypt.hashSync(password, salt);
 }
